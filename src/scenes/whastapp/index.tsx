@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const WhatsApp = () => {
-  const whatsappURL = "https://wa.me/5511912369899"; 
+  const whatsappURL = "https://wa.me/55119123456789"; 
 
   return (
     <a
