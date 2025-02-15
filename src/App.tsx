@@ -33,7 +33,7 @@ import WhatsApp from "@/scenes/whastapp"
 
 // Componente que renderiza a landing page
 const LandingPage = () => {
-  const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home);
+  const [, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home);
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
 
   useEffect(() => {

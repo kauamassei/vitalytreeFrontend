@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "@/scenes/assinatura/confirmar/confirmar.css";
-import axios from "axios";
+
 
 import cartao2 from "@/assets/cartao2.png";
 import cartao1 from "@/assets/cartao1.png";
@@ -26,15 +26,8 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/select";
+
 import { useToast } from "@/hooks/use-toast"
 
 const formSchema = z.object({
@@ -57,37 +50,17 @@ const formSchema = z.object({
 const PaymentMethods: React.FC = () => {
     const { state } = useLocation();
     const selectedPlan = state?.selectedPlan || "Nenhum plano selecionado";
-    const [qrcode, setQrcode] = useState<string>("");
+    const [qrcode] = useState<string>("");
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
     })
-    const { toast } = useToast()
+    useToast()
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    function onSubmit(_values: z.infer<typeof formSchema>) {
     }
 
 
-    const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-
-        try {
-            const response = await axios.post("http://localhost:3001/create-pix", {
-                email: values.email, // E-mail do usuário
-                plan: selectedPlan, // Plano escolhido
-                paymentMethod: values.paymentMethod, // Forma de pagamento escolhida
-            });
-
-            setQrcode(response.data.point_of_interaction.transaction_data.qr_code_base64)
-            // window.location.href = response.data.point_of_interaction.transaction_data.ticket_url;
-        } catch (error) {
-            console.error("Erro ao criar a preferência:", error);
-            toast({
-                title: `Error`,
-                variant: "destructive",
-                description: "Erro ao iniciar o pagamento. Tente novamente."
-            })
-        }
-    };
 
     return (
         <div className="bg-auth bg-center bg-no-repeat bg-cover min-h-screen w-full flex items-center justify-center">

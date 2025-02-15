@@ -10,7 +10,7 @@ type Props = {
 }
 
 
-const Clientes = ({ setSelectedPage }: Props) => {
+const Clientes = ({ }: Props) => {
     const navigate = useNavigate(); // Usando o hook de navegação
 
     // Função para redirecionar para o chat com o profissional

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+
 import '@/scenes/assinatura/assinatura.css';
 import { Spacer  } from '@chakra-ui/react';
 import {
@@ -60,7 +60,6 @@ const formSchema = z.object({
 })
 
 const Planos = () => {
-    const navigate = useNavigate();
     const [selectedPlan, setSelectedPlan] = useState<string>("");
     const [qrcode, setQrcode] = useState<string>("");
     
@@ -105,7 +104,7 @@ const Planos = () => {
 
     return (
         <>
-        <Navbar setSelectedPage={() => {}} />
+        <Navbar isTopOfPage={false}  />
         <div id="title">
             <h6 className='assinatura'>Escolha seu plano</h6> {/* Título atualizado */}
             <div className='containerAssinatura'>
@@ -236,7 +235,7 @@ const Planos = () => {
 
             </div>
         </div>
-        <FooterAssinatura setSelectedPage={() => {}} />
+        <FooterAssinatura  />
         </>
         
     );
