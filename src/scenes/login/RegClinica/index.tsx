@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "@/scenes/login/RegClinica/clinica.css";
-import { FaUserMd, FaBullhorn, FaTabletAlt } from 'react-icons/fa'; // Importando ícones
+
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useToast } from "@/hooks/use-toast"

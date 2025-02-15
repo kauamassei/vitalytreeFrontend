@@ -10,7 +10,6 @@ import Benefícios from "@/scenes/benefits";
 import Clientes from "@/scenes/clientes"
 import ContactUs from "@/scenes/contactUs";
 import Footer from "@/scenes/footer";
-import FooterAssinatura from "@/scenes/footer/footer2";
 import ChatClient from "@/scenes/chatClientes"
 ////
 import Login from '@/scenes/login/Login/Login';
@@ -54,8 +53,6 @@ const LandingPage = () => {
     <div className="app bg-gray-20">
       <Navbar 
         isTopOfPage={isTopOfPage}
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
       />
       <Home setSelectedPage={setSelectedPage} />
       <Benefícios setSelectedPage={setSelectedPage} />

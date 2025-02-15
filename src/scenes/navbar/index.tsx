@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon, UserIcon } from "@heroicons/react/24/solid";
 import logo from '@/assets/LogoVitalytree.svg';
-import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import ActionButton from "@/shared/ActionButton";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
     isTopOfPage: boolean;
-    selectedPage: SelectedPage;
-    setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
+const Navbar = ({ isTopOfPage }: Props) => {
     const flexBetween = "flex items-center justify-between";
     const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false); 
@@ -31,40 +28,35 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             <div className={`${navbarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}>
                 <div className={`${flexBetween} mx-auto w-5/6`}>
                     <div className={`${flexBetween} w-full gap-16`}>
-                    <a href="/" className="flex items-center">
-                    <img src={logo} className='h-20 w-auto' />
-                    </a>
+                        <a href="/" className="flex items-center">
+                            <img src={logo} className='h-20 w-auto' />
+                        </a>
 
-                        
                         {isAboveMediumScreens ? (
                             <div className={`${flexBetween} w-full`}>
                                 <div className={`${flexBetween} gap-8 text-sm`}>
                                     {/* Links para seções */}
                                     <a 
                                         href="#home" 
-                                        className={`${selectedPage === "home" ? "text-primary-500" : ""} transition duration-500 hover:text-primary-300`}
-                                        onClick={() => setSelectedPage("home")}
+                                        className="transition duration-500 hover:text-primary-300"
                                     >
                                         Home
                                     </a>
                                     <a 
                                         href="#benefits" 
-                                        className={`${selectedPage === "benefits" ? "text-primary-500" : ""} transition duration-500 hover:text-primary-300`}
-                                        onClick={() => setSelectedPage("benefits")}
+                                        className="transition duration-500 hover:text-primary-300"
                                     >
                                         Benefícios
                                     </a>
                                     <a 
                                         href="#ourClasses" 
-                                        className={`${selectedPage === "ourclasses" ? "text-primary-500" : ""} transition duration-500 hover:text-primary-300`}
-                                        onClick={() => setSelectedPage("ourclasses")}
+                                        className="transition duration-500 hover:text-primary-300"
                                     >
                                         Serviços
                                     </a>
                                     <a 
                                         href="#contactUs" 
-                                        className={`${selectedPage === "contactus" ? "text-primary-500" : ""} transition duration-500 hover:text-primary-300`}
-                                        onClick={() => setSelectedPage("contactus")}
+                                        className="transition duration-500 hover:text-primary-300"
                                     >
                                         Contato
                                     </a>
@@ -74,18 +66,17 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                                     </div>
                                 </div>
                                 <div className={`${flexBetween} gap-8`}>
-        {!isAuthenticated ? (
-        <>
-            <p onClick={() => navigate('/login')} className="cursor-pointer">Entre</p>
-            <ActionButton setSelectedPage={setSelectedPage} href="/login">
-                Login
-            </ActionButton>
-        </>
-    ) : (
-        <UserIcon className="h-6 w-6 text-gray-600 cursor-pointer" onClick={() => navigate('/perfil')} />
-    )}
-</div>
-
+                                    {!isAuthenticated ? (
+                                        <>
+                                            <p onClick={() => navigate('/login')} className="cursor-pointer">Entre</p>
+                                            <ActionButton onClick={() => navigate('/login')}>
+                                                Login
+                                            </ActionButton>
+                                        </>
+                                    ) : (
+                                        <UserIcon className="h-6 w-6 text-gray-600 cursor-pointer" onClick={() => navigate('/perfil')} />
+                                    )}
+                                </div>
                             </div>
                         ) : (
                             <button className="rounded-full bg-secondary-500 p-2" onClick={() => setIsMenuToggled(!isMenuToggled)}>
@@ -95,6 +86,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     </div>
                 </div>
             </div>
+
             {/* Menu Responsivo */}
             {!isAboveMediumScreens && isMenuToggled && (
                 <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-primary-100 drop-shadow-xl">
@@ -104,10 +96,10 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                         </button>
                     </div>
                     <div className="ml-[10%] flex flex-col gap-10 text-2xl">
-                        <a href="#home" onClick={() => setSelectedPage("home")}>Home</a>
-                        <a href="#benefits" onClick={() => setSelectedPage("benefits")}>Benefícios</a>
-                        <a href="#ourClasses" onClick={() => setSelectedPage("ourclasses")}>Serviços</a>
-                        <a href="#contactUs" onClick={() => setSelectedPage("contactus")}>Contato</a>
+                        <a href="#home">Home</a>
+                        <a href="#benefits">Benefícios</a>
+                        <a href="#ourClasses">Serviços</a>
+                        <a href="#contactUs">Contato</a>
                         <div className="flex flex-col gap-4 mt-4 items-start">
                             <div className="flex items-center cursor-pointer" onClick={() => navigate('/doenca')}>
                                 <MagnifyingGlassIcon className="h-6 w-6 text-gray-600" />
