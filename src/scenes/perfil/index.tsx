@@ -26,12 +26,13 @@ const Perfil: React.FC = () => {
     setChatHistory(storedChats);
   }, []);
 
-  const handleFileChange = (event: { target: { files: any[] } }) => {
-    const file = event.target.files[0];
-    if (file) {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event.target.files; // Tipo correto: FileList | null
+    if (fileList && fileList.length > 0) {
+      const file = fileList[0];
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(reader.result);
+        setAvatar(reader.result as string); // Garantir que o resultado seja uma string
       };
       reader.readAsDataURL(file);
     }
@@ -142,7 +143,7 @@ const Perfil: React.FC = () => {
         <button
           type="button"
           className="perfil-landing-btn"
-          onClick={() => navigate('/')}>
+          onClick={() => navigate('/')} >
           Voltar
         </button>
         <br />
